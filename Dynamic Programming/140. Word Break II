@@ -1,0 +1,24 @@
+class Solution {
+    public List<String> wordBreak(String s, List<String> wordDict) {
+        Map<String,List<String>> map=new HashMap<>();
+        if(map.containsKey(s)){
+            return map.get(s);
+        }
+       List<String> res=new ArrayList<>();
+        
+        if (wordDict.contains(s)){
+            res.add(s);
+        }
+        for(int i=1;i<=s.length();i++){
+            String left=s.substring(0,i);
+            if( wordDict.contains(left)){
+                List<String> list=wordBreak(s.substring(i),wordDict);
+                for( String str:list){
+                    res.add(left+ " "+str);
+                }
+            }
+        }
+        map.put(s,res);
+        return res;
+    }
+}
