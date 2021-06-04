@@ -1,0 +1,14 @@
+class Solution {
+    public List<String> generateParenthesis(int n) {
+        List<String> list = new ArrayList();
+        dfs(n, n, list, "");
+        return list;
+    }
+    public void dfs(int left, int right, List<String> list, String path){
+        
+        if(left == 0 && right == 0) list.add(path);
+        
+        if(left > 0) dfs(left - 1, right, list, path + '(');
+        if(right > left) dfs(left, right- 1, list, path + ')');
+    }
+}
